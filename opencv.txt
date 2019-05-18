@@ -1,0 +1,41 @@
+原
+树莓派学习笔记—— 源代码方式安装opencv
+
+
+    本文介绍如何在树莓派中通过编译源代码的方式安装opencv，并通过一个简单的例子说明如何使用opencv。
+    更多内容请参考——【树莓派学习笔记——索引博文】
+
+1.下载若干依赖项
+    在开始安装之前，最好更新树莓派软件源。如果更新时间太长，请参考博文修改软件源网络地址——【树莓派学习笔记——修改树莓派软件源】
+sudo apt-get update
+
+    请依次安装以下依赖项，这些必须安装的依赖项来自于opencv官网的说明，在多数debian系统中都可以采用这种方式进行安装。其实在树莓派中build-essential已经默认安装，但是cmake等其他内容仍需要手动安装。
+sudo apt-get install build-essential
+sudo apt-get install cmake
+sudo apt-get install libgtk2.0-dev
+sudo apt-get install pkg-config
+sudo apt-get install python-dev python-numpy
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev
+
+2.获得源代码
+    在树莓派用户目录中建立opencv文件夹
+mkdir opencv
+
+    通过sourceforge网站获取opencv源代码，本文选择2.4.9版本。下载过程可能比较缓慢，请耐心等待。
+wget http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.9/opencv-2.4.9.zip/download opencv-2.4.9.zip
+
+    解压源代码，获得一个名为opencv-2.4.9的文件夹
+unzip opencv-2.4.9.zip
+
+3.编译源代码
+    进入opencv源代码目录，在该目录中新建一个名为release的文件夹。
+cd ~/opencv/opencv-2.4.9
+mkdir release
+cd release
+    使用cmake工具在该文件夹中生成makefile文件，指定opencv的安装目录为/usr/local，opencv的源代码位于上一层目录。
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+    编译源代码并安装（编译源代码的时间非常的长，make之后我便睡去，第二天早上才执行install）
+make
+sudo make install
+    更新搜索动态链接库
+sudo ldconfig

@@ -1,0 +1,37 @@
+sudo apt-get install nginx uwsgi uwsgi-plugin-python3
+
+
+
+
+
+sudo nano /etc/nginx/sites-available/default
+找到server，修改成下面这个样子
+server {
+        listen 80;
+        server_name raspberry;
+        location / {
+                include uwsgi_params;
+                uwsgi_pass  127.0.0.1:5000;
+        }
+}
+sudo /etc/init.d/nginx start
+
+
+创建一个叫test_config.ini的文件
+[uwsgi]
+socket = 127.0.0.1:5000
+processes = 4
+threads = 2
+plugins = python3
+master = true
+pythonpath = /home/pi
+
+#上面的pythonpath需要换成刚才你自己创建的应用的目录
+module = hello
+callable = app
+memory-report = true
+
+
+sudo uwsgi --ini /home/pi/test_config.ini
+
+sudo uwsgi -d /home/pi/uwsgi.log --ini /home/pi/test_config.ini

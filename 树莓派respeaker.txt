@@ -1,0 +1,7 @@
+git clone https://github.com/respeaker/seeed-voicecard.git
+cd seeed-voicecard #下载声卡驱动
+sudo ./install.sh #安装声卡驱动
+reboot  #重启
+
+
+arecord -D ac108 -f S32_LE -r 16000 -c 4 hello.wav

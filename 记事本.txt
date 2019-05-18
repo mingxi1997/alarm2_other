@@ -1,0 +1,70 @@
+一、https://www.stat.berkeley.edu/~stark/SticiGui/Text/histograms.htm
+伯克利-统计学
+IPAD 密码cissyBJ66
+
+
+二、用新浪财经的API也能拿。
+
+下面是一些用新浪的API获取实时行情的例子。
+
+http://hq.sinajs.cn/list=sh000300
+
+var hq_str_sh000300="沪深300,4205.7365,4148.8856,4050.4972,4212.5677,4048.4228,0,0,203127493,261507027391,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2018-02-07,15:01:03,00";
+http://hq.sinajs.cn/list=sh601318,sh601398
+--------------------- 
+
+
+三、conda换源
+ 添加中科大源
+conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
+conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/
+conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/
+conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/
+conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/
+
+conda config --set show_channel_urls yes
+--------------------- 
+
+四、摄像头
+https://blog.csdn.net/lovelyaiq/article/details/78630515 摄像头
+
+
+五、安装cv2
+1. 先下载OpenCV的源码   http://opencv.org/downloads.html
+
+
+2. 解压到任意目录
+
+    unzip opencv-2.4.9.zip
+
+
+3.进入源码目录
+
+    cd opencv-2.4.9
+
+
+4. 事先安装下列软件
+
+    sudo apt-get install build-essential cmake libgtk2.0-dev pkg-config python-dev python-numpy libavcodec-dev libavformat-dev libswscale-dev  
+
+
+5.  进入cmake
+
+    cd cmake
+
+
+6. cmake编译生成Makefile，
+
+    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..  
+
+    安装所有的lib文件都会被安装到/usr/local目录
+
+
+7. 编译,并安装
+
+    sudo make install 
+
+六、安装拼音
+sudo apt-get install fcitx fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sunpinyin
+安装拼音
